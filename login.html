@@ -1,0 +1,106 @@
+<HTML>
+	<HEAD>
+<SCRIPT>
+			function checkName() 
+			{
+			  if (!form1.username.value.match(/^[a-zA-Z]+$/) && form1.username.value !="")
+            		   {
+                 		   form1.username.value="";
+                  		  form1.username.focus(); 
+                   		 alert("Please enter only alphabets in text");
+              		 }	
+			}
+			function checkPassword()
+			{
+			if(form1.pass1.value!=form1.pass2.value)
+			{
+				alert("Passwords entered do not match");
+			}
+			else
+			if (typeof (Storage) !== "undefined") {
+          			  localStorage.userid = form1.username.value;
+          			  localStorage.passwrd = form1.pass1.value;
+            			alert("Registered");
+			}
+			}
+
+  		  function login()
+   		 {
+     			   if (typeof (Storage) !== "undefined") 
+       			 {
+          		  if (form2.username1.value== localStorage.userid) {
+             		   form2.pass3.value=localStorage.passwrd;
+			}
+           	 }
+    		}
+		function onSubmit()
+		{
+		if((form2.username1.value!="")&&(form2.pass3.value==localStorage.passwrd))
+			alert("Signed In");
+		else
+			alert("Password do not match");
+		}
+
+</SCRIPT>
+
+		<LINK type="text/css" rel="stylesheet" href="ExternalStylesheet\homestylesheet.css" />
+		<STYLE type="text/css">
+th{
+color:orangered;
+}
+#form2{
+position:absolute;
+top:50px;
+left:400px;
+width:380px;
+height:200px;
+border:3px solid orangered;
+margin-left:190px;
+}
+#form1{
+width:380px;
+height:200px;
+border:3px solid orangered;
+margin-left:60px;
+margin-top:50px;
+}
+button{
+margin-left:80px;
+color:white;
+background-color:orangered;
+}
+</STYLE>
+</HEAD>
+<BODY>
+<FORM id="form1" name="Sign Up" onsubmit="checkPassword()">
+
+<TABLE>
+<TR>
+<TH colspan="2"><B><I>Create an Account</I></B></TH>
+</TR><TR>
+<TD>Name:</TD><TD> <Input type="text" name="username" onkeyup="checkName();" required></TD>
+</TR>
+<TR>
+<TD>Password:</TD><TD> <Input type="password" name="pass1" required></TD>
+</TR>
+<TR>
+<TD>Confirm Password:</TD><TD> <Input type="password" name="pass2" required></TD>
+</TR>
+<TR><TD><BR><Button type="Submit">Register</TD></TR>
+</TABLE>
+</FORM>
+
+<FORM id="form2" name="Sign In" onsubmit="onSubmit();">
+<TABLE>
+<TR>
+<TH colspan="2"><B><I>Sign In</I></B></TH>
+</TR><TR>
+<TD>Name:</TD><TD> <Input type="text" name="username1" onkeyup="checkName();"  onchange="login();" required></TD>
+</TR>
+<TR>
+<TD>Password:</TD><TD> <Input type="password" name="pass3" required ></TD>
+</TR>
+
+<TR><TD><BR><Button type="Submit">Sign In</TD></TR></TABLE>
+</FORM>
+</BODY></HTML>
